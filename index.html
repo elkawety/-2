@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="ar">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تجربة الواقع المعزز للستائر</title>
+    <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+    <script src="https://cdn.rawgit.com/jeromeetienne/ar.js/1.7.2/aframe/build/aframe-ar.min.js"></script>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+        }
+
+        .info {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            z-index: 10;
+            background-color: rgba(255, 255, 255, 0.8);
+            padding: 10px;
+            border-radius: 5px;
+        }
+
+        .info button {
+            margin: 5px;
+            padding: 10px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .info button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="info">
+        <button onclick="changeCurtain('red')">ستارة حمراء</button>
+        <button onclick="changeCurtain('blue')">ستارة زرقاء</button>
+        <button onclick="changeCurtain('pattern')">ستارة منقوشة</button>
+    </div>
+
+    <a-scene embedded arjs>
+        <!-- كائن افتراضي يمثل الستارة -->
+        <a-image id="curtain" position="0 0 -2" rotation="0 0 0" width="2" height="3" src="">
+        </a-image>
+
+        <!-- ماركر الواقع المعزز -->
+        <a-marker-camera preset="hiro"></a-marker-camera>
+    </a-scene>
+
+    <script>
+        function changeCurtain(type) {
+            const curtain = document.getElementById('curtain');
+            if (type === 'red') {
+                curtain.setAttribute('src', 'red-curtain.jpg');
+            } else if (type === 'blue') {
+                curtain.setAttribute('src', 'blue-curtain.jpg');
+            } else if (type === 'pattern') {
+                curtain.setAttribute('src', 'pattern-curtain.jpg');
+            }
+        }
+    </script>
+</body>
+
+</html>
